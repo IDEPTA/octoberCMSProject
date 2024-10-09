@@ -1,0 +1,33 @@
+uuid: 44a0edb0-6096-404c-9b3d-44ba4c573979
+handle: Site\Menus
+type: entry
+name: Entry
+drafts: false
+pagefinder: false
+
+navigation: 
+    label: Menus
+    icon: icon-sitemap
+    
+fields:
+    description:
+        label: Menu description
+        type: textarea
+        size: small
+        tab: Description
+
+    items:
+        tab: Item
+        label: Item
+        type: nesteditems
+        maxDepth: 2
+        span: adaptive
+        form: 
+            fields:
+                title:
+                    label: title
+                    type: text
+                    validation: required
+                url:
+                    label: URL 
+                    type: pagefinder

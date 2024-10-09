@@ -1,0 +1,39 @@
+url = "/languages"
+layout = "default"
+title = "Languages"
+meta_title = "title.languages"
+==
+<div class="container">
+
+    <div class="title-area">
+        <h3>{{ this.page.meta_title|_ }}</h3>
+    </div>
+
+    <div class="languages-list">
+        <div class="languages">
+            {% for site in sitePicker.sites %}
+                <a
+                    href="{{ site.url }}"
+                    class="{{ this.site.id == site.id ? 'active' }}">
+                    <span class="code">{{ site.hard_locale }}</span>
+                    <span class="name">{{ site.name }}</span>
+                </a>
+            {% endfor %}
+        </div>
+
+        <div class="more-info">
+            <a href="javascript:toggleHelp('#localeSetup')">
+                {{ 'Learn more about setting up languages'|_ }}
+            </a>
+        </div>
+    </div>
+</div>
+
+{% put help %}
+    <div id="localeSetup" class="help-popup">
+        <button class="setup-close" type="button" onclick="toggleHelp('#localeSetup')">&times;</button>
+        <div class="setup-content">
+            {% content 'locale-setup.htm' %}
+        </div>
+    </div>
+{% endput %}

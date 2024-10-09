@@ -1,0 +1,30 @@
+{% set post = __SELF__.post %}
+<!-- Слайдер с изображениями -->
+{% if post.featured_images|length %}
+        <swiper-container>
+            {% for image in post.featured_images %}
+                <swiper-slide>
+                    <img
+                        src="{{ image.path }}"
+                        alt="img"
+                        style="max-width: 100%" />
+                </swiper-slide>
+            {% endfor %}
+        </swiper-container>
+{% endif %}
+
+<!-- Заголовок поста -->
+<h1>{{ post.title }}</h1>
+
+<!-- Полный текст поста -->
+<div class="content">{{ post.content_html|raw }}</div>
+
+<!-- Информация о категории и дате публикации -->
+<p class="info">
+    {% if post.categories|length %} in
+        {% for category in post.categories %}
+            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    {% endif %}
+    on {{ post.published_at|date('M d, Y') }}
+</p>

@@ -1,0 +1,31 @@
+title = "main menu demo"
+layout = "default"
+url = "/main-menu-demo"
+
+[section menu]
+handle = "Site\Menus"
+identifier = "slug"
+value = "main-menu"
+==
+<div class="container pb-5 fs-5">
+    <h3>Main menu</h3>
+    {% set items = menu.items.toNested %}
+    <ul>
+        {% for item in items %}
+        <li>
+            <a href="{{item.url|link}}">
+            {{item.title}}
+            </a>
+            {% for childItemn in item.children %}
+            <ul>
+                <li>
+                    <a href="{{ childItemn.url|link }}">
+                        {{childItemn.title}}
+                    </a>
+                </li>
+            </ul>
+            {% endfor %}
+         </li>
+        {% endfor %}
+    </ul>
+</div>
