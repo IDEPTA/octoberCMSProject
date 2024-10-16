@@ -1,8 +1,20 @@
-url = "/category"
-layout = "default"
+url = "/blog/category/:slug"
+layout = "blogLayout"
 title = "Category"
-==
-<div class='container'>
-<h2>Категории</h2>
 
-</div>
+[blogPosts]
+pageNumber = "{{ :page }}"
+categoryFilter = "{{ :slug }}"
+postsPerPage = 6
+noPostsMessage = "Записей не найдено"
+sortOrder = "published_at desc"
+categoryPage = "category"
+postPage = "post"
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 1
+categoryPage = "category"
+==
+{% component 'blogCategories' %}
+{% component 'blogPosts' %}

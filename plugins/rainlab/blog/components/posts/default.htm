@@ -1,25 +1,31 @@
 {% set posts = __SELF__.posts %}
 
-<p class="post-list">
+<div class="row">
     {% for post in posts %}
-        
-            {% if post.featured_images|length > 0 %}
-                <img src="{{ post.featured_images[0].path }}" alt="{{ post.title }}" class="img-fluid post-preview-image" />
-            {% endif %}
-            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-
-            <p class="info">
-                {% if post.categories|length %} in {% endif %}
-                {% for category in post.categories %}
-                    <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
-                {% endfor %}
-                on {{ post.published_at|date('M d, Y') }}
-            </p>
-
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if post.featured_images|length > 0 %}
+                    <img src="{{ post.featured_images[0].path }}" alt="{{ post.title }}" class="card-img-top" />
+                {% endif %}
+                <div class="card-body">
+                    <h3 class="card-title"><a href="{{ post.url }}">{{ post.title }}</a></h3>
+                    <p class="card-text">
+                        {% if post.categories|length %} in {% endif %}
+                        {% for category in post.categories %}
+                            <a href="{{ category.url }}">{{ category.name }}</a>{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                        on {{ post.published_at|date('M d, Y') }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% if loop.index is divisible by(3) %}</div><div class="row">{% endif %}
     {% else %}
-        <li class="no-data">{{ __SELF__.noPostsMessage }}</li>
+        <div class="col-12">
+            <p class="no-data">{{ __SELF__.noPostsMessage }}</p>
+        </div>
     {% endfor %}
-        </p>
+</div>
 
 {% if posts.lastPage > 1 %}
     <ul class="pagination">

@@ -31,3 +31,10 @@ footer {
     min-width: 100%;
     box-sizing: border-box;
 }
+
+.card{
+    background-color: rgb(44, 44, 44);
+}
+.card-text{
+    color: #e0e0e0;
+}

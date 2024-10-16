@@ -1,16 +1,49 @@
 {% set post = __SELF__.post %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+ <!-- Link Swiper's CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Demo styles -->
+  <style>
+
+     .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .swiper-scrollbar{
+        background-color: rgb(206, 206, 206);
+    }
+  </style>
 <!-- Слайдер с изображениями -->
 {% if post.featured_images|length %}
-        <swiper-container>
-            {% for image in post.featured_images %}
-                <swiper-slide>
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        {% for image in post.featured_images %}
+                <div class="swiper-slide">
                     <img
                         src="{{ image.path }}"
                         alt="img"
-                        style="max-width: 100%" />
-                </swiper-slide>
+                        style="max-width: 500px" />
+                </div>
             {% endfor %}
-        </swiper-container>
+    </div>
+    <div class="swiper-scrollbar"></div>
+</div>
 {% endif %}
 
 <!-- Заголовок поста -->
@@ -28,3 +61,15 @@
     {% endif %}
     on {{ post.published_at|date('M d, Y') }}
 </p>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      scrollbar: {
+        el: ".swiper-scrollbar",
+        hide: false,
+      },
+    });
+  </script>

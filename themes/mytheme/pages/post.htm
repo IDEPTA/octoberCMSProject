@@ -5,5 +5,14 @@ title = "Post"
 [blogPost]
 slug = "{{ :slug }}"
 categoryPage = "about"
+
+[staticBreadcrumbs]
+
+[blogCategories]
+slug = "{{ :slug }}"
+displayEmpty = 1
+categoryPage = "category"
 ==
+{% component 'blogCategories' %}
+{% component 'staticBreadcrumbs' %}
 {% component 'blogPost' %}

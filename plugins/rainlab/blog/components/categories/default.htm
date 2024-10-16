@@ -1,5 +1,6 @@
 {% if __SELF__.categories|length > 0 %}
     <ul class="category-list">
+        <li><a href="/blog">Все</a></li>
         {% partial __SELF__ ~ "::items"
             categories = __SELF__.categories
             currentCategorySlug = __SELF__.currentCategorySlug

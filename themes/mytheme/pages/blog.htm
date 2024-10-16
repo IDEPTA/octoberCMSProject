@@ -4,7 +4,7 @@ title = "Blog"
 
 [blogPosts]
 pageNumber = "{{ :page }}"
-postsPerPage = 5
+postsPerPage = 6
 noPostsMessage = "Пока ниче нет :/"
 sortOrder = "published_at desc"
 categoryPage = "category"
@@ -12,8 +12,11 @@ postPage = "post"
 
 [blogCategories]
 slug = "{{ :slug }}"
-displayEmpty = 0
-categoryPage = "about"
+displayEmpty = 1
+categoryPage = "category"
+
+[staticBreadcrumbs]
 ==
+{% component 'staticBreadcrumbs' %}
 {% component 'blogCategories' %}
 {% component 'blogPosts' %}
